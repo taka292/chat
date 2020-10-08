@@ -1,16 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- {{dd(data.comments)}} --}}
 <div class="chat-container row justify-content-center">
     <div class="chat-area">
         <div class="card">
             <div class="card-header">Comment</div>
             <div class="card-body chat-card">
-                <div id="comment-data"></div>
-                {{-- @foreach ($comments as $item)
-                @include('components.comment', ['item' => $item])
-                @endforeach --}}
+                {{-- <div id="comment-data"> --}}
+
+                    @foreach ($comments as $item)
+                    {{-- {{dd($item->id)}} --}}
+                    @include('components.comment', ['item' => $item])
+                    @if ($item->name === $name) 
+                        {{-- {{dd($name)}} --}}
+                        <div><a href="{{ action('HomeController@edit', ['id' => $item->id]) }}">編集</a></div>
+
+
+                    @endif
+
+                    @endforeach
+                {{-- </div> --}}
             </div>
+
         </div>
     </div>
 </div>
@@ -28,6 +40,6 @@
 </form>
 @endsection
 
-@section('js')
+{{-- @section('js')
 <script src="{{ asset('js/comment.js') }}"></script>
-@endsection
+@endsection --}}

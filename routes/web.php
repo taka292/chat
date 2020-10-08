@@ -24,6 +24,8 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('components/edit', 'HomeController@edit')->name('home');
+Route::post('components/edit', 'HomeController@update')->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('chat/create', 'Admin\ChatsController@add')->middleware('auth');
@@ -31,4 +33,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::post('/add', 'HomeController@add')->name('add');
 
-Route::get('/result/ajax', 'HomeController@getData');
+// Route::get('/result/ajax', 'HomeController@getData');
