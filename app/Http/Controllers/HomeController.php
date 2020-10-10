@@ -26,8 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all()->orderBy('created_at', 'desc');
-        dd($comments);
+        $comments = Comment::all();
+        // ->orderBy('created_at', 'desc');
+        // dd($comments);
         $user = Auth::user();
 
         return view('home', ['name' => $user->name, 'comments' => $comments]);
